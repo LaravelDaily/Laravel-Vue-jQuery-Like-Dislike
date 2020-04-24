@@ -20,3 +20,5 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('posts-jquery', 'PostController@jquery')->name('posts.jquery');
+Route::post('posts/rate', 'PostController@ratePost')->name('posts.ratePost');
