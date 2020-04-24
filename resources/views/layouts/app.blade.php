@@ -39,6 +39,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('posts.jquery') }}">Posts jQuery</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('posts.vue') }}">Posts Vue.js</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

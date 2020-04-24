@@ -20,6 +20,19 @@ class PostController extends Controller
         return view('posts.jquery', compact('posts'));
     }
 
+    public function vue()
+    {
+        $posts = Post::withCount('likes', 'dislikes')
+            ->when(auth()->check(), function ($query) {
+                $query->with(['ratings' => function ($query) {
+                    $query->where('id', auth()->id());
+                }]);
+            })
+            ->get();
+
+        return view('posts.vue', compact('posts'));
+    }
+
     public function ratePost(Request $request)
     {
         if (auth()->guest()) {
