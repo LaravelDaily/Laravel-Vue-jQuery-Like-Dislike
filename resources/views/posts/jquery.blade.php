@@ -57,6 +57,7 @@ $(function() {
         var _token   = $('meta[name="csrf-token"]').attr('content');
         var type     = $(this).hasClass('like') ? 'like' : 'dislike';
         var post_id  = $(this).parent('.likes').data('post-id');
+        var $parent  = $(this).parent('.likes');
 
         $.post("{{ route('posts.ratePost') }}", {
                 _token,
@@ -65,9 +66,9 @@ $(function() {
             })
             .done((data) => {
                 var message = 'You have ' + type + 'd this post';
-                $('.likes a').removeClass('active');
-                $('.like .count').text(data.likes);
-                $('.dislike .count').text(data.dislikes);
+                $parent.children('a').removeClass('active');
+                $parent.find('.like .count').text(data.likes);
+                $parent.find('.dislike .count').text(data.dislikes);
 
                 if (data.detached && data.unrated) {
                     message = 'You have un' + type + 'd this post'

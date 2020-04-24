@@ -35,7 +35,7 @@ class PostController extends Controller
         $post = Post::find($request->input('post_id'));
 
         $unrated  = (boolean) $post->ratings()->where('user_id', $user)->where('type', $request->input('type'))->count();
-        $detached = (boolean) $post->ratings()->where('user_id', $user)->detach();
+        $detached = (boolean) $post->ratings()->detach($user);
         if (!$unrated) {
             $post->ratings()->attach($user, [
                 'type' => $request->input('type')
